@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ubi-carpark
+
+logging:
+  level:
+    ROOT: INFO
+    com.sisltd.ivu.emma: INFO
+    org.springframework.context.support: WARN
+    org.springframework.cloud.context.scope: WARN
+    org.hibernate: ERROR
+

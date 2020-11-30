@@ -6,6 +6,7 @@ scripts/*.war
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+!**/ubi-ui/**
 
 ### STS ###
 .apt_generated

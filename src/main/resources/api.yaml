@@ -1,0 +1,153 @@
+swagger: '2.0'
+info:
+  description: API Documentation of Ubi Carpark application
+  version: 1.0.0
+  title: Ubi Carpark API
+  contact:
+    email: quantumrandom@gmail.com
+
+tags:
+  - name: Charging Points
+    description:  Endpoints that allow to plug and unplug cars to charging points as well as to get info about their status
+
+paths:
+  /charging-points:
+    get:
+      tags:
+        - Charging Points
+      description: Endpoint for get a full report of charing poits' state.
+      operationId: listChargingPointsState
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Car is plugged in to charging point.
+          schema:
+            $ref: '#/definitions/ChargingPointStateReport'
+        400:
+          description: Invalid request. One of the required parameters is missing or invalid.
+        500:
+          description: Internal error.
+  '/charging-points/{index}':
+    put:
+      tags:
+        - Charging Points
+      description: Endpoint for plugging car to a particular charging point.
+      operationId: plugInChargingPoint
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: index
+          type: integer
+          format: int32
+          required: true
+          description: Index of a charging point
+      responses:
+        200:
+          description: Car is plugged in to charging point.
+          schema:
+            $ref: '#/definitions/ChargingPointState'
+        400:
+          description: Invalid request. One of the required parameters is missing or invalid.
+        404:
+          description: Charging point with such index not found
+        403:
+          description: Charging point is already occupied
+        500:
+          description: Internal error.
+    delete:
+      tags:
+        - Charging Points
+      description: Endpoint for unplugging car from a particular charging point.
+      operationId: unplugFromChargingPoint
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: index
+          type: integer
+          format: int32
+          required: true
+          description: Index of a charging point
+      responses:
+        200:
+          description: Car is unplugged from charging point.
+          schema:
+            $ref: '#/definitions/ChargingPointState'
+        400:
+          description: Invalid request. One of the required parameters is missing or invalid.
+        404:
+          description: Charging point with such index not found
+        403:
+          description: Charging point is already available
+        500:
+          description: Internal error.
+    get:
+      tags:
+        - Charging Points
+      description: Endpoint for getting the status of particular charging point.
+      operationId: getChargingPointState
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: index
+          type: integer
+          format: int32
+          required: true
+          description: Index of a charging point
+      responses:
+        200:
+          description: OK.
+          schema:
+            $ref: '#/definitions/ChargingPointState'
+        400:
+          description: Invalid request. One of the required parameters is missing or invalid.
+        404:
+          description: Charging point with such index not found
+        500:
+          description: Internal error.
+
+definitions:
+  ChargingPointState:
+    type: object
+    description: Charging point state.
+    properties:
+      index:
+        description: Index of charging point.
+        type: integer
+        format: int32
+        readOnly: true
+        example: '1'
+      status:
+        description: status of charging point.
+        readOnly: true
+        type: string
+        enum:
+          - AVAILABLE
+          - OCCUPIED
+        example: AVAILABLE
+      consumption:
+        description: available current of the carging point in Amperes
+        readOnly: true
+        type: integer
+        format: int32
+        example: 20
+  ChargingPointStateReport:
+    type: object
+    description: Wrapper object for charging points report.
+    properties:
+      total:
+        description: Total number of charging points.
+        type: integer
+        format: int32
+        example: 10
+      charging_points:
+        description: list of charging points' state.
+        type: array
+        items:
+          $ref: '#/definitions/ChargingPointState'
+host: virtserver.swaggerhub.com
+schemes:
+  - http

@@ -1,0 +1,10 @@
+{
+    "dateLibrary" : "java8",
+    "serializableModel" : "true",
+    "bigDecimalAsString" : "false",
+    "java8" : "true",
+    "library" : "spring-cloud",
+    "useBeanValidation": "false",
+    "interfaceOnly":"true",
+    "skipDefaultInterface": "true"
+  }

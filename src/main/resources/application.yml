@@ -5,8 +5,17 @@ spring:
 logging:
   level:
     ROOT: INFO
-    com.sisltd.ivu.emma: INFO
     org.springframework.context.support: WARN
     org.springframework.cloud.context.scope: WARN
     org.hibernate: ERROR
 
+ubi-carpark-api:
+  url: http://localhost
+
+carpark:
+  charging-points:
+    total: 10
+    current:
+      min: 10
+      max: 20
+      total: 100

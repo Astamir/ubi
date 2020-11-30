@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "934cc9d5-de37-49c3-a83d-5c5a74a695a1",
+		"name": "ubi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List Charging Points",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/charging-points",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"charging-points"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PlugIn To Charging Point",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/charging-points/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"charging-points",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unplug From Charging Point",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/charging-points/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"charging-points",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/charging-points/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"charging-points",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
